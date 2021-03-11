@@ -1,2 +1,2 @@
 const x: string = 'typescript';
-export {x}
+export {x};
