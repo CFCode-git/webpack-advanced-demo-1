@@ -1,6 +1,10 @@
 import {a} from './a.js'  // 直接引入
 const b = import ('./b') // 动态引入, 按需加载
 
+import {JsxDemo} from './jsx-demo.jsx'
+
+console.log(JsxDemo)
+
 const hi = ()=>{
   console.log('QY')
   console.log(a)

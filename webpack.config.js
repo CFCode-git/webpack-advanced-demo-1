@@ -9,7 +9,8 @@ module.exports = {
           loader: 'babel-loader',
           options:{
             presets:[ // 预先规则
-              '@babel/preset-env'
+              ['@babel/preset-env'],
+              ['@babel/preset-react']
             ]
           }
         }
