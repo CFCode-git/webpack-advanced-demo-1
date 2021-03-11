@@ -1,8 +1,8 @@
-import {a} from './a.js' // 动态引入, 按需加载
-import {JsxDemo} from './jsx-demo.jsx'  // 直接引入
-import {TsxDemo} from './tsx-demo.tsx'  // 直接引入
+import {a} from '@/a.js'
+import {JsxDemo} from './jsx-demo.jsx'
+import {TsxDemo} from './tsx-demo.tsx'
 import {x} from './ts-demo.ts'
-const b = import ('./b')
+const b = import ('./b') // 动态引入, 按需加载
 
 console.log(x)
 console.log(JsxDemo)
