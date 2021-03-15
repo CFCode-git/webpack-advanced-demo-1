@@ -1,4 +1,4 @@
-import {c} from '@/c';
+import {c} from 'src/c';
 
 console.log(c);
 const x: string = 'typescript';
