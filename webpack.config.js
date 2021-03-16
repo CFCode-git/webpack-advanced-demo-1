@@ -27,6 +27,11 @@ module.exports = {
           },
           {
             loader: 'less-loader',
+            options: {
+              additionalData: `
+                @import "~src/less-vars.less";
+              `
+            }
           }
         ]
       },
