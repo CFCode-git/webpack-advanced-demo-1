@@ -8,7 +8,7 @@ module.exports = {
   })],
   resolve: {
     alias: {
-      'src': path.resolve(__dirname,'./src/')
+      '@': path.resolve(__dirname,'./src/')
     }
   },
   module: {
@@ -29,7 +29,7 @@ module.exports = {
             loader: 'less-loader',
             options: {
               additionalData: `
-                @import "~src/less-vars.less";
+                @import "~@/less-vars.less";
               `
             }
           }
@@ -67,7 +67,7 @@ module.exports = {
             loader: 'sass-loader',
             options: {
               additionalData: `
-                @import "~src/scss-vars.scss";
+                @import "~@/scss-vars.scss";
               `,
               sassOptions: {
                 includePaths: [__dirname]
