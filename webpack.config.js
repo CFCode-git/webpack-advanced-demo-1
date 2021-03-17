@@ -22,8 +22,13 @@ module.exports = {
     new ESlintPlugin({
       extensions: ['.js', '.jsx', 'ts', '.tsx']
     }),
-    new MiniCssExtractPlugin()
+    new MiniCssExtractPlugin({
+      filename:'[name].[contenthash].css'
+    })
   ],
+  output:{
+    filename:'[name].[contenthash].js'
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src/')
