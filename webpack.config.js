@@ -1,9 +1,9 @@
 const path = require('path')
 const ESlintPlugin = require('eslint-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const mode = 'production'
-
 
 const cssLoader = (...loaders) => [
   mode === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
@@ -24,10 +24,11 @@ module.exports = {
     new ESlintPlugin({
       extensions: ['.js', '.jsx', 'ts', '.tsx']
     }),
-    new MiniCssExtractPlugin({
+    mode === 'production' && new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css'
-    })
-  ],
+    }),
+    new HtmlWebpackPlugin()
+  ].filter(Boolean), // 通过 filter 自动过滤 false，现在 plugins 数组可以支持 短路逻辑
   output: {
     filename: '[name].[contenthash].js'
   },
