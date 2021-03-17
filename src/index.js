@@ -3,10 +3,11 @@ import {JsxDemo} from './jsx-demo.jsx'
 import {TsxDemo} from './tsx-demo.tsx'
 import {x} from './ts-demo.ts'
 import '@/scss-demo.scss'
-import vars from '@/./less-vars.less'
+import vars from '@/stylus-vars.styl'
 import '@/less-demo.less'
+import '@/stylus-demo.styl'
 const b = import ('./b') // 动态引入, 按需加载
-console.log(vars)
+console.log(11,vars)
 
 console.log(x)
 console.log(JsxDemo)
