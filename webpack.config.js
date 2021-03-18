@@ -20,6 +20,10 @@ const cssLoader = (...loaders) => [
 
 module.exports = {
   mode,
+  entry: {
+    main:'./src/index.js',
+    admin:'./src/admin.js'
+  },
   plugins: [
     new ESlintPlugin({
       extensions: ['.js', '.jsx', 'ts', '.tsx']
@@ -27,7 +31,11 @@ module.exports = {
     mode === 'production' && new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css'
     }),
-    new HtmlWebpackPlugin()
+    new HtmlWebpackPlugin(), // 默认就是打包 index.js
+    new HtmlWebpackPlugin({
+      filename:'admin.html',
+      chunks:['admin']
+    })
   ].filter(Boolean), // 通过 filter 自动过滤 false，现在 plugins 数组可以支持 短路逻辑
   output: {
     filename: '[name].[contenthash].js'
