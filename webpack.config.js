@@ -33,6 +33,7 @@ module.exports = {
     filename: '[name].[contenthash].js'
   },
   optimization:{ // 优化
+    moduleIds: 'deterministic',
     runtimeChunk: "single", // 运行时文件单独打包
     splitChunks: {
       cacheGroups: {
