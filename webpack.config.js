@@ -2,9 +2,30 @@ const path = require('path')
 const ESlintPlugin = require('eslint-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-
+// 多页面
+const fs = require('fs')
+const fileNames = fs.readdirSync('./src/pages')
+const makeEntries = (arr) => {
+  const result = {}
+  arr.forEach(item => {
+    const key = item.replace(/\.js$/i, '')
+    result[key] = path.resolve('./', 'src', 'pages', item)
+  })
+  return result
+}
+const makeHtml = (arr) => {
+  return arr.map((item) => {
+    const key = item.replace(/\.js$/i, '')
+    return new HtmlWebpackPlugin({
+      filename: `${key}.html`,
+      chunks: [`${key}`]
+    })
+  })
+}
+const entries = makeEntries(fileNames)
+const html = makeHtml(fileNames)
+//// 多页面
 const mode = 'production'
-
 const cssLoader = (...loaders) => [
   mode === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
   {
@@ -22,7 +43,8 @@ module.exports = {
   mode,
   entry: {
     main:'./src/index.js',
-    admin:'./src/admin.js'
+    admin:'./src/admin.js',
+    ...entries
   },
   plugins: [
     new ESlintPlugin({
@@ -35,7 +57,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename:'admin.html',
       chunks:['admin']
-    })
+    }),
+    ...html
   ].filter(Boolean), // 通过 filter 自动过滤 false，现在 plugins 数组可以支持 短路逻辑
   output: {
     filename: '[name].[contenthash].js'
