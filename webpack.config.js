@@ -32,6 +32,9 @@ module.exports = {
   output: {
     filename: '[name].[contenthash].js'
   },
+  optimization:{ // 优化
+    runtimeChunk: "single", // 运行时文件单独打包
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src/')
