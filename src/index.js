@@ -7,6 +7,9 @@ import vars from '@/stylus-vars.styl'
 import '@/less-demo.less'
 import '@/stylus-demo.styl'
 import React from 'react'
+import {shared} from '@/shared.js'
+
+console.log(shared)
 
 const b = import ('./b') // 动态引入, 按需加载
 console.log(11,vars)

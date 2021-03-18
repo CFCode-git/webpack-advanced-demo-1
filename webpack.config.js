@@ -46,6 +46,7 @@ module.exports = {
     splitChunks: {
       cacheGroups: {
         vendor:{
+          priority:10,
           minSize: 0, // 如果不写 0， 由于 React 文件尺寸太小， 会直接跳过
           test: /[\\/]node_modules[\\/]/, // 这里是为了匹配 /node_modules/ 或 \node_modules\
           name: 'vendors', // 文件名
@@ -55,6 +56,13 @@ module.exports = {
            * 把两种加载方式的来自 node_modules 目录的文件打包为 vendors.xxx.js
            * 其中 vendors 是第三方的意思
            */
+        },
+        common:{
+          priority:5, // 优先级,要保证 vendor 的优先级高一点，因为有可能一个文件是被引用了两次， 但他是在 node_modules 里面
+          minSize: 0,
+          minChunks: 2, // 这里表示只要有一个文件被至少两个文件引用了，就可以认为这个文件是公有的
+          chunks: 'all',
+          name: 'common'
         }
       }
     }
